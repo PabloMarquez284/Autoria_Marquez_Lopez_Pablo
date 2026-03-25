@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="CatalogoCloud_v2.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<!-- 
+  ========================================================
+  Módulo: LMSGI - DAW
+  Autor: Pablo Márquez López
+  Reto Práctico: Refactorizar tanto el csd como el xml
+  ========================================================
+-->
+<catalogo_cloud empresa="TechNova Cloud">
+
+    <!-- Data Center: Región Sur (Madrid) -->
+    <centro_datos ubicacion="Madrid" zona="eu-sur-1">
+
+        <servidor id="srv-db-01" rack="A1" estado="activo">
+            <hardware>
+                <cpu nucleos="16" arquitectura="x86_64">Intel Xeon Gold</cpu>
+                <ram unidad="GB">64</ram>
+                <discos>
+                    <disco tipo="NVMe" capacidad_tb="2" principal="true" />
+                    <disco tipo="SSD" capacidad_tb="4" principal="false" />
+                </discos>
+            </hardware>
+            <software>
+                <red>
+                    <dhcp>Si</dhcp>
+                </red>
+                <so version="22.04">Ubuntu Server</so>
+                <servicios>
+                    <servicio puerto="80">Nginx HTTP</servicio>
+                    <servicio puerto="443">Nginx HTTPS</servicio>
+                </servicios>
+                <auditoria>
+                    <fecha_revision>2026-03-24</fecha_revision>
+                    <tecnico>Pablo</tecnico>
+                    <nota>8</nota>
+                </auditoria>
+            </software>
+        </servidor>
+
+        <servidor id="srv-db-02" rack="A2" estado="mantenimiento">
+            <hardware>
+                <cpu nucleos="64" arquitectura="ARM">Ampere Altra</cpu>
+                <ram unidad="GB">256</ram>
+                <discos>
+                    <disco tipo="NVMe" capacidad_tb="8" principal="true" />
+                </discos>
+            </hardware>
+            <software>
+                <red>
+                    <ip_fija>192.168.1.10</ip_fija>
+                </red>
+                <so version="15">Debian GNU/Linux</so>
+                <servicios>
+                    <servicio puerto="5432">PostgreSQL</servicio>
+                </servicios>
+                <auditoria>
+                    <fecha_revision>2026-03-22</fecha_revision>
+                    <tecnico>Mario</tecnico>
+                    <nota>7</nota>
+                </auditoria>
+            </software>
+        </servidor>
+
+    </centro_datos>
+
+    <!-- Data Center: Región Central (París) -->
+    <centro_datos ubicacion="Paris" zona="eu-centro-1">
+
+        <servidor id="srv-ia-01" rack="B1" estado="activo">
+            <hardware>
+                <cpu nucleos="32" arquitectura="x86_64">AMD EPYC</cpu>
+                <ram unidad="GB">128</ram>
+                <!-- Ojo aquí: Este es el único servidor con GPU, ideal para filtrar por existencia
+                de nodo -->
+                <gpu modelo="NVIDIA A100" vram_gb="80">Tensor Core</gpu>
+                <discos>
+                    <disco tipo="NVMe" capacidad_tb="4" principal="true" />
+                </discos>
+            </hardware>
+            <software>
+                <red>
+                    <ip_fija>194.123.1.10</ip_fija>
+                </red>
+                <so version="22.04">Ubuntu Server</so>
+                <servicios>
+                    <servicio puerto="8888">Jupyter Hub</servicio>
+                </servicios>
+                <auditoria>
+                    <fecha_revision>2026-03-12</fecha_revision>
+                    <tecnico>Willman</tecnico>
+                    <nota>10</nota>
+                </auditoria>
+            </software>
+        </servidor>
+
+        <servidor id="srv-backup-01" rack="B2" estado="apagado">
+            <hardware>
+                <cpu nucleos="8" arquitectura="x86_64">Intel Xeon Bronze</cpu>
+                <ram unidad="GB">32</ram>
+                <discos>
+                    <!-- Almacenamiento masivo pero mecánico (HDD) -->
+                    <disco tipo="HDD" capacidad_tb="50" principal="true" />
+                </discos>
+            </hardware>
+            <software>
+                <red>
+                    <dhcp>No</dhcp>
+                </red>
+                <so version="9">CentOS Stream</so>
+                <servicios>
+                    <servicio puerto="22">OpenSSH</servicio>
+                    <servicio puerto="873">Rsync</servicio>
+                </servicios>
+                <auditoria>
+                    <fecha_revision>2026-03-02</fecha_revision>
+                    <tecnico>Alejandro</tecnico>
+                    <nota>4</nota>
+                </auditoria>
+            </software>
+        </servidor>
+        
+    </centro_datos>
+
+</catalogo_cloud>
